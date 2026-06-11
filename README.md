@@ -1,4 +1,6 @@
-# Gerador de Currículo com IA
+# OmniGC — Gerador de Currículos com IA
+
+🔗 **Acesse online:** https://gerador-curriculo-ia.vercel.app
 
 Aplicação web para montar um currículo profissional em minutos, com **textos gerados e aprimorados pela IA da Anthropic (Claude)**. Formulário à esquerda, preview ao vivo à direita e exportação em PDF com um clique.
 
