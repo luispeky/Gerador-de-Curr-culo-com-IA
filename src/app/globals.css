@@ -1,26 +1,328 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #0b1020;
+  --bg-soft: #131a30;
+  --panel: #1a2238;
+  --border: #2a3552;
+  --text: #e7ecf6;
+  --muted: #9aa6c3;
+  --accent: #5b8cff;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background:
+    radial-gradient(1200px 600px at 80% -10%, #1c2747 0%, transparent 60%),
+    radial-gradient(900px 500px at -10% 10%, #19233f 0%, transparent 55%),
+    var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  min-height: 100vh;
+}
+
+/* Campos de formulário */
+.campo {
+  width: 100%;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 0.625rem;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.9rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.campo:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+.campo::placeholder {
+  color: var(--muted);
+}
+
+.rotulo {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Botões */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 0.6rem;
+  padding: 0.55rem 0.95rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.08s, background 0.15s, opacity 0.15s;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn-primario {
+  background: linear-gradient(180deg, #6e9bff, #4f7ff0);
+  color: white;
+}
+.btn-ia {
+  background: linear-gradient(180deg, #8b5cf6, #6d3df0);
+  color: white;
+}
+.btn-fantasma {
+  background: var(--bg-soft);
+  border-color: var(--border);
+  color: var(--text);
+}
+.btn-perigo {
+  background: transparent;
+  color: #ff8e8e;
+  border-color: #5a2e3a;
+}
+
+.cartao {
+  background: color-mix(in srgb, var(--panel) 92%, transparent);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  backdrop-filter: blur(6px);
+}
+
+/* ====== PREVIEW (folha A4) ====== */
+.folha {
+  --tema: #2563eb;
+  background: #ffffff;
+  color: #1f2933;
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 48px 52px;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.5;
+}
+.folha .cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.folha .cab-texto {
+  min-width: 0;
+}
+.folha .foto {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--tema);
+  flex-shrink: 0;
+}
+.folha h1 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--tema);
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+.folha .cargo-topo {
+  font-size: 1rem;
+  color: #52606d;
+  margin: 2px 0 12px;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+.folha .contatos {
+  font-size: 0.8rem;
+  color: #52606d;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  border-top: 2px solid var(--tema);
+  padding-top: 10px;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+.folha section {
+  margin-top: 22px;
+}
+.folha h2 {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--tema);
+  border-bottom: 1px solid #e4e7eb;
+  padding-bottom: 4px;
+  margin: 0 0 10px;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+.folha .item-titulo {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.folha .item-sub {
+  font-size: 0.85rem;
+  color: #52606d;
+  font-style: italic;
+}
+.folha .item-desc {
+  font-size: 0.88rem;
+  white-space: pre-line;
+  margin-top: 4px;
+}
+.folha .contatos {
+  align-items: center;
+}
+.folha .contatos a {
+  color: var(--tema);
+  text-decoration: none;
+  font-weight: 600;
+}
+.folha .contatos a:hover {
+  text-decoration: underline;
+}
+.folha .contatos .sep {
+  color: #b6bdcc;
+}
+.folha .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.folha .tag {
+  background: color-mix(in srgb, var(--tema) 12%, white);
+  color: var(--tema);
+  border: 1px solid color-mix(in srgb, var(--tema) 30%, white);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ====== MODELO ATS (texto simples, coluna única) ====== */
+.folha-ats {
+  background: #ffffff;
+  color: #000000;
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 48px 56px;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.folha-ats h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  color: #000;
+}
+.folha-ats .cargo-topo {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 2px 0 8px;
+  color: #000;
+}
+.folha-ats .contatos {
+  font-size: 12px;
+  color: #000;
+  margin: 0 0 6px;
+}
+.folha-ats .contatos a {
+  color: #000;
+  text-decoration: underline;
+}
+.folha-ats section {
+  margin-top: 16px;
+}
+.folha-ats h2 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  color: #000;
+  border-bottom: 1px solid #000;
+  padding-bottom: 3px;
+  margin: 0 0 8px;
+}
+.folha-ats .bloco {
+  margin-bottom: 10px;
+}
+.folha-ats .item-titulo {
+  font-weight: 700;
+  font-size: 13px;
+}
+.folha-ats .item-sub {
+  font-size: 12px;
+  color: #000;
+}
+.folha-ats .item-desc {
+  font-size: 12.5px;
+  white-space: pre-line;
+  margin-top: 2px;
+}
+
+/* ====== MOBILE ====== */
+@media (max-width: 640px) {
+  .folha,
+  .folha-ats {
+    padding: 26px 22px;
+  }
+  .folha h1 {
+    font-size: 1.55rem;
+  }
+  .folha .foto {
+    width: 74px;
+    height: 74px;
+  }
+  .cartao {
+    padding: 1rem;
+  }
+}
+
+/* ====== IMPRESSÃO / PDF ====== */
+@media print {
+  body {
+    background: white !important;
+  }
+  .nao-imprimir {
+    display: none !important;
+  }
+  .area-impressao {
+    position: static !important;
+    overflow: visible !important;
+  }
+  .folha,
+  .folha-ats {
+    box-shadow: none;
+    max-width: 100%;
+    border-radius: 0;
+    padding: 0;
+  }
+  @page {
+    margin: 16mm;
+  }
 }
